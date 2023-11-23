@@ -223,13 +223,13 @@ const forgetPassword = async (req, res) => {
         }
     });
 
-    return res.status(200).json({ message: "An OTP Code has been sent to your email address!", status: 200, success: true, data: { user } })
+    return res.status(200).json({ message: "An OTP Code has been sent to your email address!", status: 200, success: true })
 }
 
 
 
 const resetPassword = async (req, res) => {
-    const { otpCode, password, confirmPassword } = req.body
+    const { otpCode, password } = req.body
 
     try {
         const passwordReset = await OTPCode.findOne({
@@ -249,10 +249,6 @@ const resetPassword = async (req, res) => {
 
         if (password === existingUser.password) {
             return res.status(400).json({ message: 'New password must be different from the old password' });
-        }
-
-        if (password !== confirmPassword) {
-            return res.status(400).json({ message: 'Password and confirm password do not match' });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);

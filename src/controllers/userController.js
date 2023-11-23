@@ -127,10 +127,6 @@ const userInfo = async (req, res) => {
         return res.status(400).json({ message: "User does not exist" })
     }
 
-    if (password !== confirmPassword) {
-        return res.status(400).json({ message: 'Password and confirm password do not match' });
-    }
-
     const hashedPassword = await bcrypt.hash(password, 10)
 
     existingUser.firstName = firstName;

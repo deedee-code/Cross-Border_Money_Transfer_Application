@@ -79,7 +79,6 @@ const registerEmail = async (req, res) => {
         return res.status(200).json({ message: "An OTP Code has been sent to your email address!", status: 200, success: true, data: { user, token } })
 
     } catch (error) {
-        console.error(error)
         return res.status(500).json({ message: "Internal Server Error" })
     }
 }
@@ -180,7 +179,6 @@ const userLogin = async (req, res) => {
         return res.status(200).json({ message: "User Successfully Logged In...", status: 200, success: true, data: { user, token } })
 
     } catch (error) {
-        console.error(error)
         return res.status(500).json({ message: "Internal Server Error" })
     }
 }

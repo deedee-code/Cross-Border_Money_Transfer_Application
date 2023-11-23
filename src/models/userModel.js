@@ -25,12 +25,20 @@ const userSchema = new Schema({
     password: {
         type: String,
         // required: true,
-        minlength: 6
+        minlength: 8
+    },
+    nationality: {
+        type: String,
+    },
+    dateOfBirth: {
+        type: String
     },
     country: {
         type: String,
-        trim: true,
         maxlength: 50
+    },
+    state: {
+        type: String,
     },
     address: {
         type: String,

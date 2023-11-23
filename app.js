@@ -25,8 +25,8 @@ app.get('/', (req, res) => {
 })
 
 
-// dbConnect().then(() => {
-app.listen(port, () => {
-    console.log(`Server Listener on port: ${port}`)
+dbConnect().then(() => {
+    app.listen(port, () => {
+        console.log(`Server Listener on port: ${port}`)
+    })
 })
-// })

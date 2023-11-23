@@ -58,7 +58,7 @@ const userSchema = new Schema({
     pin: {
         type: String,
         trim: true,
-        maxlength: 4
+        // maxlength: 4
     }
 }, {
     timestamps: true

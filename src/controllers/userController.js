@@ -115,9 +115,9 @@ const verifyEmail = async (req, res) => {
 
 
 const userInfo = async (req, res) => {
-    const { firstName, lastName, nationality, dateOfBirth, country, address, tag, bvn, password } = req.body
+    const { firstName, lastName, nationality, dateOfBirth, country, state, address, tag, bvn, password } = req.body
 
-    if (!firstName || !lastName || !nationality || !dateOfBirth || !country || !address || !bvn || !password || !tag) {
+    if (!firstName || !lastName || !nationality || !dateOfBirth || !country || !state || !address || !bvn || !password || !tag) {
         return res.status(400).json({ message: "All compulsory fields are compulsory!" })
     }
 
@@ -138,6 +138,7 @@ const userInfo = async (req, res) => {
     existingUser.nationality = nationality;
     existingUser.dateOfBirth = dateOfBirth;
     existingUser.country = country;
+    existingUser.state = state;
     existingUser.address = address;
     existingUser.tag = tag;
     existingUser.bvn = bvn;

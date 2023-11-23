@@ -20,8 +20,13 @@ app.use(
 );
 app.use('/api/user', userRoute)
 
+app.get('/', (req, res) => {
+    return res.status(200).send("Server is running Successfully...")
+})
 
 
-app.listen(port, () => {
-    console.log(`Server Listener on port: ${port}`)
+dbConnect().then(() => {
+    app.listen(port, () => {
+        console.log(`Server Listener on port: ${port}`)
+    })
 })

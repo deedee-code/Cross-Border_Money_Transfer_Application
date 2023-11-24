@@ -174,6 +174,7 @@ const userLogin = async (req, res) => {
 
         const user = { ...existingUser._doc }
         delete user.password
+        delete user.pin
 
         return res.status(200).json({ message: "User Successfully Logged In...", status: 200, success: true, data: { user, token } })
 

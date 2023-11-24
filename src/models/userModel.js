@@ -59,6 +59,10 @@ const userSchema = new Schema({
         type: String,
         trim: true,
         // maxlength: 4
+    },
+    phoneNumber: {
+        type: String,
+        trim: true,
     }
 }, {
     timestamps: true

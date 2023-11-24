@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const dbConnect = require("./src/config/database");
 const userRoute = require('./src/routes/userRoute');
+const settingRoute = require('./src/routes/settingRoute')
 
 dbConnect();
 const app = express();
@@ -19,6 +20,7 @@ app.use(
     })
 );
 app.use('/api/user', userRoute)
+app.use('/api/setting', settingRoute)
 
 app.get('/', (req, res) => {
     return res.status(200).send("Server is running Successfully...")

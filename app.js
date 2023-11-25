@@ -9,18 +9,14 @@ dbConnect();
 const app = express();
 const port = process.env.PORT || 3500;
 
-app.use(
-    cors({
-        origin: "http://localhost:4500/",
-        methods: "GET,POST,PUT,DELETE",
-        credentials: true,
-    })
-);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.use('/uploads', express.static('uploads'));
-app.use('/api/user', userRoute)
-app.use('/api/setting', settingRoute)
+app.use('/api/user', userRoute);
+app.use('/api/setting', settingRoute);
+
 
 app.get('/', (req, res) => {
     return res.status(200).send("Server is running Successfully...")

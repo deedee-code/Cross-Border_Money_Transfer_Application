@@ -9,9 +9,6 @@ dbConnect();
 const app = express();
 const port = process.env.PORT || 3500;
 
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(
     cors({
         origin: "http://localhost:4500/",
@@ -19,6 +16,9 @@ app.use(
         credentials: true,
     })
 );
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static('uploads'));
 app.use('/api/user', userRoute)
 app.use('/api/setting', settingRoute)
 

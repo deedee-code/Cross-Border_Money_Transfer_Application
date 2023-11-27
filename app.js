@@ -5,7 +5,8 @@ const cors = require('cors');
 require('dotenv').config();
 const dbConnect = require("./src/config/database");
 const userRoute = require('./src/routes/userRoute');
-const settingRoute = require('./src/routes/settingRoute')
+const settingRoute = require('./src/routes/settingRoute');
+const walletRoute = require('./src/routes/walletRoute');
 
 dbConnect();
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 app.use('/api/user', userRoute);
 app.use('/api/setting', settingRoute);
+app.use('/api/wallet', walletRoute);
 
 
 app.get('/', (req, res) => {

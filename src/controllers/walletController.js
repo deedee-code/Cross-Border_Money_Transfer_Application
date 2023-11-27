@@ -1,6 +1,33 @@
-const https = require('https')
+const Wallet = require('../models/walletModel');
+const https = require('https');
 
 const SECRET_KEY = process.env.PAYSTACK_SECRET_KEY
+
+
+const createWallet = async (req, res) => {
+
+    try {
+        const userWallet = await Wallet.findOne({ userId: req.user._id })
+        if (userWallet) {
+            return res.status(400).json({ message: "Wallet already exists!" })
+        }
+
+        const newWallet = new Wallet({
+            userId: req.user._id,
+            currency: req.body.currency,
+            walletBalance: req.body.walletBalance
+        })
+
+        await newWallet.save()
+
+        return res.status(200).json({ message: "Wallet created!", status: 200, success: true, data: { userWallet: newWallet } })
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal Server Error', status: 500, success: false });
+    }
+
+}
+
 
 const initializeTransaction = async (req, res) => {
     const email = req.body.email;
@@ -22,14 +49,15 @@ const initializeTransaction = async (req, res) => {
         }
     }
 
-    const reqPaystack = https.request(options, resPaystack => {
+    const reqPaystack = https.request(options, async resPaystack => {
         let data = ''
 
         resPaystack.on('data', (chunk) => {
             data += chunk
         });
 
-        resPaystack.on('end', () => {
+        resPaystack.on('end', async () => {
+
             console.log(JSON.parse(data))
             return res.status(200).send(data)
         })
@@ -46,4 +74,7 @@ const initializeTransaction = async (req, res) => {
 
 
 
+
+exports.createWallet = createWallet;
 exports.initializeTransaction = initializeTransaction;
+

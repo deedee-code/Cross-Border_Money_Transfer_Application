@@ -7,6 +7,7 @@ const dbConnect = require("./src/config/database");
 const userRoute = require('./src/routes/userRoute');
 const settingRoute = require('./src/routes/settingRoute');
 const walletRoute = require('./src/routes/walletRoute');
+const transactionRoute = require('./src/routes/transactionRoute');
 
 dbConnect();
 const app = express();
@@ -21,6 +22,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api/user', userRoute);
 app.use('/api/setting', settingRoute);
 app.use('/api/wallet', walletRoute);
+app.use('/api/transaction', transactionRoute)
 
 
 app.get('/', (req, res) => {

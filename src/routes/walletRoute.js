@@ -1,5 +1,5 @@
 const express = require('express');
-const { initializeTransaction } = require('../controllers/walletController');
+const { initializeTransaction, createWallet } = require('../controllers/walletController');
 const { protectUser } = require('../middlewares/authMiddleware');
 
 
@@ -7,7 +7,9 @@ const router = express.Router()
 
 
 // VIRTUAL WALLET
+router.post('/create-wallet', protectUser, createWallet)
 router.post('/', protectUser, initializeTransaction)
+
 
 
 

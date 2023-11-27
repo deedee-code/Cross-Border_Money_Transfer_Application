@@ -11,11 +11,6 @@ const initializeTransaction = async (req, res) => {
         "amount": amount * 100
     })
 
-    // const params = JSON.stringify({
-    //     "email": "customer@email.com",
-    //     "amount": "20000"
-    // })
-
     const options = {
         hostname: 'api.paystack.co',
         port: 443,
